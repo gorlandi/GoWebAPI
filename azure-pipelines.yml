@@ -9,6 +9,11 @@ steps:
   inputs:
     version: '1.23.0'
 
+- task: Go@0
+  inputs:
+    command: 'build'
+    workingDirectory: '$(Build.ArtifactStagingDirectory)'
+
 - task: CopyFiles@2
   inputs:
     Contents: '**'
@@ -19,8 +24,3 @@ steps:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
     
-
-- task: Go@0
-  inputs:
-    command: 'build'
-    workingDirectory: '$(Build.ArtifactStagingDirectory)/main'
